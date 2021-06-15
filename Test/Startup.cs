@@ -85,6 +85,8 @@ namespace Test
 
             app.UseAuthentication();
             app.UseAuthorization();
+            // global error handler
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
