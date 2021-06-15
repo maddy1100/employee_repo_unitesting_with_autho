@@ -27,7 +27,7 @@ namespace Test
             return _appDbContext.Employees.Find(empId);
         }
 
-        public List<Employee> getEmployeeList()
+        public IEnumerable<Employee> getEmployeeList()
         {
             return _appDbContext.Employees.ToList();
         }

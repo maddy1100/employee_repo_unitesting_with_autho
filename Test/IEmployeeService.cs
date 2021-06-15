@@ -5,7 +5,7 @@ namespace Test
 {
     public interface IEmployeeService
     {
-        List<Employee> getEmployeeList();
+        IEnumerable<Employee> getEmployeeList();
         Employee getEmployeeDetails(int empId);
         void addEmployee(Employee employee);
         void deleteEmployee(int empId);

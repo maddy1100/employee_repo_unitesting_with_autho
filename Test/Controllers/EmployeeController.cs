@@ -15,7 +15,8 @@ namespace Test.Controllers
             _service = service;
         }
         [AllowAnonymous]
-        [HttpGet(Name = "getToken")]
+        [HttpGet]
+        [Route("/getToken")]
         public IActionResult getToken()
         {
             var client = new RestClient("https://dev-sn6rjax0.us.auth0.com/oauth/token");
@@ -66,13 +67,13 @@ namespace Test.Controllers
                 return NotFound("Something went wrong!!");
         }
 
-        [Authorize]
+        [Authorize(Roles ="Manager")]
         [HttpDelete("{empId}", Name = "deleteEmployee")]
         public async Task<IActionResult> Delete(int empId)
         {
             if (empId <= 0)
                 return BadRequest("Not a valid empolyee id");
-
+            if(_service.getEmployeeDetails(empId) !=null)
             _service.deleteEmployee(empId);
 
             if (await _service.SaveChangesAsync())
